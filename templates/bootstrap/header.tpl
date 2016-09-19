@@ -22,7 +22,7 @@
 				<li {if $pagename eq "submit"}class="active"{/if}><a href="{$URL_submit}">{#PLIGG_Visual_Submit_A_New_Story#}</a></li>
 				{checkActionsTpl location="tpl_pligg_submit_link_end"}
 				{if $enable_group eq "true"}	
-					<li {if $pagename eq "groups" || $pagename eq "submit_groups" || $pagename eq "group_story"}class="active"{/if}><a href="{$URL_groups}"><span>{#PLIGG_Visual_Groups#}</span></a></li>
+					<!-- <li {if $pagename eq "groups" || $pagename eq "submit_groups" || $pagename eq "group_story"}class="active"{/if}><a href="{$URL_groups}"><span>{#PLIGG_Visual_Groups#}</span></a></li> -->
 				{/if}
 				{if $Auto_scroll == '2'}
 					<li class="dropdown">

@@ -1025,8 +1025,10 @@ font-size:0.85em;
 }
 #login_modal_spacer{
 	padding:0;
-	margin-top:8px;
-	margin-bottom:8px;
+	margin: 0;
+	width: 10px;
+    height: 8px;
+    background: none;
 }
 .login_modal_forgot { }
 
@@ -1126,15 +1128,21 @@ background-color:#5CB85C !important;
 background-image:none;
 }
 
-
+.votebox {
+    box-sizing: border-box;
+    border: solid 2px white;
+}
 .votebutton {
     color: black;
+
 }
 .votebox-answers {
-    background-color: #5fba7d;
+    /* background-color: #5fba7d; */
+    border: solid 2px #5fba7d;
 }
 .votebox-votes {
-    background-color: #bbddff;
+    /* background-color: #bbddff; */
+    border: solid 2px #bbddff;
 }
 .comment-content p {
     font-size: inherit;

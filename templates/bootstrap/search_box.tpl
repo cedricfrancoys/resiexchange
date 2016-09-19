@@ -18,7 +18,7 @@
 		
 			<div class="input-group">
 		
-		<input type="text" class="form-control" tabindex="20" name="search" id="searchsite" value="{$searchboxtext}" onfocus="if(this.value == some_search) {ldelim}this.value = '';{rdelim}" onblur="if (this.value == '') {ldelim}this.value = some_search;{rdelim}"/>
+		<input type="text" class="form-control" tabindex="20" name="search" id="searchsite" placeholder="{$searchboxtext}" value="" onfocus="if(this.value == some_search) {ldelim}this.value = '';{rdelim}" onblur="if (this.value == '') {ldelim}this.value = some_search;{rdelim}"/>
 			
 			<span class="input-group-btn">
 				<button type="submit" tabindex="21" class="btn btn-primary custom_nav_search_button" />{#PLIGG_Visual_Search_Go#}</button>

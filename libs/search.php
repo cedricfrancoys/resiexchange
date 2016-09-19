@@ -393,7 +393,7 @@ class Search {
 			$this->searchTerm = $buffKeyword;
 		}
 
-		#echo $this->sql."<br><br>";
+		//echo $this->sql."<br><br>";
 		###### END Advanced Search ######
 		
 		
@@ -523,6 +523,7 @@ class Search {
 			$SearchMethod = SearchMethod; // create a temp variable so we can change the value without possibly affecting anything else
 
 			if($this->isTag == true){
+                /*
 				// search the tags table
 				$this->searchTable = table_tags . " INNER JOIN " . table_links . " ON " . table_tags . ".tag_link_id = " . table_links . ".link_id";
 				
@@ -539,6 +540,9 @@ class Search {
 					else
 						$where = " AND ".$sq." GROUP BY " . table_links . ".link_id, `link_votes` ORDER BY `link_votes` DESC";
 				// ---
+                */
+                $this->searchTable = table_links;
+                $where = " AND ".table_links.".link_tags like '%".$words."%' GROUP BY " . table_links . ".link_id, `link_votes` ORDER BY `link_votes` DESC";
 				
 			} else {
 				// search the links table

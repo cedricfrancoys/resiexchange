@@ -12,10 +12,12 @@ $name=js_urldecode($_POST["name"]);
 
 switch ($type) {
 	case 'username':
+    echo $name;
 		if (utf8_strlen($name)<3) { // if username is less than 3 characters
 			echo $main_smarty->get_config_vars("PLIGG_Visual_CheckField_UserShort");
 			return;
 		}
+        /*
 		if (preg_match('/\pL/u', 'a')) {	// Check if PCRE was compiled with UTF-8 support
 		    if (!preg_match('/^[_\-\d\p{L}\p{M}]+$/iu', $name)) { // if username contains invalid characters
 			echo $main_smarty->get_config_vars("PLIGG_Visual_CheckField_InvalidChars");
@@ -27,6 +29,11 @@ switch ($type) {
 			return;
 		    }
 		}
+        */
+		if (!$res = preg_match('/^[^~`@%&=\\/;:\\.,<>!"\\\'\\^\\.\\[\\]\\$\\(\\)\\|\\*\\+\\-\\?\\{\\}\\\\]+$/', $name)) { // if username contains invalid characters
+			echo $main_smarty->get_config_vars("PLIGG_Visual_CheckField_InvalidChars");
+			return;
+        }        
 		if(user_exists($name)) { // if username already exists
 			echo $main_smarty->get_config_vars("PLIGG_Visual_CheckField_UserExists");
 			return;

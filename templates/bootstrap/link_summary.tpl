@@ -183,6 +183,7 @@
 					<span id="linksummaryUnvote"><a href="javascript:{$link_shakebox_javascript_unvote}">{#PLIGG_Visual_Unvote_For_It#}</a></span>&nbsp; 
 				{/if}
 				{if $enable_group eq "true" && $user_logged_in && $pagename neq 'new'}
+                    <!--
 					<span class="group-tool-wrapper">
 						<i class="fa fa-group"></i> 
 						<span class="group_sharing"><a href="javascript://" onclick="{if $get_group_membered}var replydisplay=document.getElementById('group_share-{$link_shakebox_index}').style.display ? '' : 'none';document.getElementById('group_share-{$link_shakebox_index}').style.display = replydisplay;{else}alert('{#PLIGG_Visual_No_Groups#}');{/if}">{#PLIGG_Visual_Group_Share#}</a></span>
@@ -190,7 +191,12 @@
 							<div class="group-share-popup">{$get_group_membered}</div>
 						</span>
 					</span>
+                    -->
 				{/if}
+
+                <i class="fa fa-group"></i>
+                <span class="group_sharing"><a href="#">{#PLIGG_Visual_Group_Share#}</a></span>
+                
 				{checkActionsTpl location="tpl_pligg_story_tools_end"}
 				<iframe height="0" width="0" frameborder="0" name="story_status" class="invisible"></iframe>
 				<span id="stories_status-{$link_shakebox_index}" style="display:none;">
