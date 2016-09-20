@@ -69,7 +69,7 @@ class TagCloud {
             $this->smarty_variable->assign('time_query', $time_query);
         } else {
             $from_where = "FROM " . table_tags . ", " . table_links . " WHERE tag_lang='$dblang' and link_id = tag_link_id and ";
-	    $cache_possible=1;
+            $cache_possible=1;
         }
 
         if ($this->filterTo == 'all') {$from_where .= " (link_status='published' OR link_status='new') "; $cache_possible++;}
@@ -77,42 +77,42 @@ class TagCloud {
         if ($this->filterTo == 'published') {$from_where .= " link_status='published' ";}
 
         if(is_numeric($this->filterCategory) && $this->filterCategory > 0){
-		$catId = $this->filterCategory;
-		$child_cats = '';
-		// do we also search the subcategories? 
-		if( Independent_Subcategories == true){
-			$child_array = '';
+            $catId = $this->filterCategory;
+            $child_cats = '';
+            // do we also search the subcategories? 
+            if( Independent_Subcategories == true){
+                $child_array = '';
 
-			// get a list of all children and put them in $child_array.
-			children_id_to_array($child_array, table_categories, $catId);
-			if ($child_array != '') {
-				// build the sql
-				foreach($child_array as $child_cat_id) {
-					$child_cat_sql .= ' OR `link_category` = ' . $child_cat_id . ' ';
-					if (Multiple_Categories)
-						$child_cat_sql .= ' OR ac_cat_id = ' . $child_cat_id . ' ';
-				}
-			}
-		}
-		if (Multiple_Categories)
-			$child_cat_sql .= " OR ac_cat_id = $catId ";
-		$from_where .= " AND (link_category=$catId " . $child_cat_sql . ")";
+                // get a list of all children and put them in $child_array.
+                children_id_to_array($child_array, table_categories, $catId);
+                if ($child_array != '') {
+                    // build the sql
+                    foreach($child_array as $child_cat_id) {
+                        $child_cat_sql .= ' OR `link_category` = ' . $child_cat_id . ' ';
+                        if (Multiple_Categories)
+                            $child_cat_sql .= ' OR ac_cat_id = ' . $child_cat_id . ' ';
+                    }
+                }
+            }
+            if (Multiple_Categories)
+                $child_cat_sql .= " OR ac_cat_id = $catId ";
+            $from_where .= " AND (link_category=$catId " . $child_cat_sql . ")";
 
-		$cache_possible=0;
-	}
+            $cache_possible=0;
+        }
         
         //CDPDF
         if(isset($_REQUEST['category'])){
             $catId = $db->get_var("SELECT category_id from " . table_categories . " where category_safe_name = '".$db->escape($_REQUEST['category'])."';");
-			$category_name = $db->get_var("SELECT category_name from " . table_categories . " where category_safe_name = '".$db->escape($_REQUEST['category'])."';");
-			
-			$this->smarty_variable->assign('category_name', $category_name);
+            $category_name = $db->get_var("SELECT category_name from " . table_categories . " where category_safe_name = '".$db->escape($_REQUEST['category'])."';");
+
+            $this->smarty_variable->assign('category_name', $category_name);
 
             //$catId = get_category_id($this->category);
             if(isset($catId)){
                 $child_cats = '';
                 // do we also search the subcategories? 
-		if (! Independent_Subcategories){
+                if (! Independent_Subcategories){
                     $child_array = '';
                     // get a list of all children and put them in $child_array.
                     children_id_to_array($child_array, table_categories, $catId);
@@ -120,41 +120,45 @@ class TagCloud {
                         // build the sql
                         foreach($child_array as $child_cat_id) {
                             $child_cat_sql .= ' OR `link_category` = ' . $child_cat_id . ' ';
-			    if (Multiple_Categories)
-				$child_cat_sql .= ' OR ac_cat_id = ' . $child_cat_id . ' ';
+                            if (Multiple_Categories)
+                                $child_cat_sql .= ' OR ac_cat_id = ' . $child_cat_id . ' ';
                         }
                     }
                 }
-		if (Multiple_Categories)
-			$child_cat_sql .= " OR ac_cat_id = $catId ";
-		$cache_possible=0;
+                if (Multiple_Categories)
+                    $child_cat_sql .= " OR ac_cat_id = $catId ";
+                
+                $cache_possible=0;
                 $from_where .= " AND (link_category=$catId " . $child_cat_sql . ")";
 
-		// Search on additional categories
-		if (Multiple_Categories)
-		    $from_where = str_replace("WHERE", " LEFT JOIN ".table_additional_categories. " ON ac_link_id=link_id WHERE", $from_where);
+                // Search on additional categories
+                if (Multiple_Categories)
+                    $from_where = str_replace("WHERE", " LEFT JOIN ".table_additional_categories. " ON ac_link_id=link_id WHERE", $from_where);
             }
         }
         //CDPDF
+
+
         
-        $from_where .= " GROUP BY tag_words";
+        $from_where .= " GROUP BY link_tag";
         
-   /*CDPDF : we calculate the coefficient with the following queries
+        /*CDPDF : we calculate the coefficient with the following queries
         $max = max($db->get_var("select count(*) as words $from_where order by words desc limit 1"), 2);
         $coef = ($this->max_points - $this->min_points)/($max-1);
         CDPDF */
         
-	if ($cache_possible==2)
-	{
-            $sql = "select * FROM ".table_tag_cache." limit $this->word_limit";
-            $res = $db->get_results($sql);
-	}	
-	else
-	{
-            $sql = "select tag_words, count(DISTINCT link_id) as count $from_where order by count desc limit $this->word_limit";
-            //echo $sql;
-            $res = $db->get_results($sql);
-	}
+        /*
+        if ($cache_possible==2) {
+                $sql = "select * FROM ".table_tag_cache." limit $this->word_limit";
+        }	
+        else {
+                $sql = "select tag_words, count(DISTINCT link_id) as count $from_where order by count desc limit $this->word_limit";
+        }
+        */
+        $sql = "select tag_words, count(DISTINCT link_id) as count FROM " . table_tags . ", " . table_links . " WHERE link_tags = tag_words GROUP BY link_tags order by count desc limit $this->word_limit";
+        
+        echo $sql;
+        $res = $db->get_results($sql);
         
         if ($res) {
             foreach ($res as $item) {

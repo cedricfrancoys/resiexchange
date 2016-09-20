@@ -23,7 +23,14 @@ $page_size = $top_users_size;
 $offset=(get_current_page()-1)* $page_size;
 
 // put the table headers in an array for the top users tpl file
-$header_items = array($main_smarty->get_config_vars('PLIGG_Visual_TopUsers_TH_User'), $main_smarty->get_config_vars('PLIGG_Visual_TopUsers_TH_News'), $main_smarty->get_config_vars('PLIGG_Visual_TopUsers_TH_PublishedNews'), $main_smarty->get_config_vars('PLIGG_Visual_TopUsers_TH_Comments'), $main_smarty->get_config_vars('PLIGG_Visual_TopUsers_TH_TotalVotes'), $main_smarty->get_config_vars('PLIGG_Visual_TopUsers_TH_PublishedVotes'));
+$header_items = array(
+                $main_smarty->get_config_vars('PLIGG_Visual_TopUsers_TH_User'), 
+                $main_smarty->get_config_vars('PLIGG_Visual_TopUsers_TH_News'), 
+                // $main_smarty->get_config_vars('PLIGG_Visual_TopUsers_TH_PublishedNews'), 
+                $main_smarty->get_config_vars('PLIGG_Visual_TopUsers_TH_Comments'), 
+                $main_smarty->get_config_vars('PLIGG_Visual_TopUsers_TH_TotalVotes'), 
+                // $main_smarty->get_config_vars('PLIGG_Visual_TopUsers_TH_PublishedVotes')
+                );
 
 // determine how to sort users
 // validate and make sure value is between 0 and 5	

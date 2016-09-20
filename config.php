@@ -2,6 +2,7 @@
 
 // composer autoloading
 require_once('vendor/autoload.php');
+include_once('config.inc.php');
 
 ini_set('include_path', '.');
 

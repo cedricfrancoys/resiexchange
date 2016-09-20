@@ -50,6 +50,7 @@
 				</div>
 			</div>
 			
+            <!--
 			<div class="control-group">
 				<label for="scategory" class="control-label">{#PLIGG_Visual_Search_Category#}</label>
 				<div class="controls">
@@ -58,8 +59,10 @@
 					</select>
 				</div>
 			</div>
+            -->
+            <input type="hidden" name="scategory" value="2">
 			
-			{php} if (enable_group=='true') { {/php}
+			{php} /* if (enable_group=='true') { {/php}
 				<div class="control-group">
 					<label for="sgroup" class="control-label">{#PLIGG_Visual_Search_Group#}</label>
 					<div class="controls">
@@ -70,7 +73,7 @@
 						</select>
 					</div>
 				</div>
-			{php} }	{/php}
+			{php} }	*/ {/php}
 			
 			<div class="control-group">
 				<label for="status" class="control-label">{#PLIGG_Visual_Search_Status#}</label>

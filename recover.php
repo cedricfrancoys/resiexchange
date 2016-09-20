@@ -70,14 +70,14 @@ if($user){
 				
                 require_once 'vendor/swiftmailer/lib/swift_required.php';
                 
-                $transport = Swift_SmtpTransport::newInstance('smtp.gmail.com', 465, "ssl")
-                  ->setUsername('isaced@gmail.com')
-                  ->setPassword('namour01');
+                $transport = Swift_SmtpTransport::newInstance(MAIL_SMTP_HOST, MAIL_SMTP_PORT, "ssl")
+                  ->setUsername(MAIL_USERNAME)
+                  ->setPassword(MAIL_PASSWORD);
 
                 $mailer = Swift_Mailer::newInstance($transport);
 
                 $message = Swift_Message::newInstance($subject)
-                  ->setFrom(array('isaced@gmail.com' => 'ResiExchange'))
+                  ->setFrom(array(MAIL_USERNAME => 'ResiExchange'))
                   ->setTo(array($to))
                   ->setBody($body);
           

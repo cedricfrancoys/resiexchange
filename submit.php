@@ -384,7 +384,7 @@ function do_submit2() {
 	$thecat = get_cached_category_data('category_id', $linkres->category);
 	$main_smarty->assign('request_category_name', $thecat->category_name);
 
-	$linkres->title = trim(stripslashes(sanitize($_POST['title'], 3)), " ?\t\n\r\0\x0B");
+	$linkres->title = trim(stripslashes(sanitize($_POST['title'], 3)), "\t\n\r\0\x0B");
 	$linkres->title_url = makeUrlFriendly($linkres->title, $linkres->id);
 	$linkres->tags = tags_normalize_string(stripslashes(sanitize($_POST['tags'], 3)));
 	$linkres->content = close_tags(stripslashes(sanitize($_POST['bodytext'], 4, $Story_Content_Tags_To_Allow)));

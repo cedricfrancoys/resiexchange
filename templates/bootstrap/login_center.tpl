@@ -15,7 +15,7 @@
 			<h2>{#PLIGG_Visual_Login_Login#}</h2>
 			<p>{#PLIGG_Visual_Login_Have_Account#}</p>
 			<form action="{$URL_login}" method="post">	
-				<strong>{#PLIGG_Visual_Login_Username#}/{#PLIGG_Visual_Register_Email#}:</strong><br />
+				<strong>{#PLIGG_Visual_Register_Email#}:</strong><br />
 				<input autofocus="autofocus" type="text" name="username" class="form-control" value="{if isset($login_username)}{$login_username}{/if}" tabindex="1" /><br />
 				
 				<strong>{#PLIGG_Visual_Login_Password#}:</strong><br />
@@ -38,7 +38,7 @@
 			<strong>{#PLIGG_Visual_Register_Email#}:</strong><br />
 			<input type="text" name="email" class="form-control" size="25" tabindex="5" id="forgot-email" value="" />
 			<br />
-			<input type="submit" value="Submit" class="btn btn-primary" tabindex="6" />
+			<input type="submit" value="{#PLIGG_Visual_Login_SendResetRequest#}" class="btn btn-primary" tabindex="6" />
 			<input type="hidden" name="processlogin" value="3"/>
 			<input type="hidden" name="return" value="{$get.return}"/>
 		</form>

@@ -13,10 +13,11 @@
 					{$header}
 				</th>
 			{/foreach}
-
+<!--
 			<th>
 				{#PLIGG_Visual_TopUsers_TH_Karma#}
 			</th>
+            -->
 		</tr>
 	</thead>
 	{$users_table}

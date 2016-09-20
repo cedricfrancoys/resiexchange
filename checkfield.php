@@ -12,7 +12,6 @@ $name=js_urldecode($_POST["name"]);
 
 switch ($type) {
 	case 'username':
-    echo $name;
 		if (utf8_strlen($name)<3) { // if username is less than 3 characters
 			echo $main_smarty->get_config_vars("PLIGG_Visual_CheckField_UserShort");
 			return;

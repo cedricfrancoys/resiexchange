@@ -135,7 +135,7 @@ function sanitize($var, $santype = 1, $allowable_tags = ''){
 		return htmlentities(strip_tags($var, $allowable_tags),ENT_QUOTES,'UTF-8');
 	}
 	elseif ($santype == 3) {
-		return addslashes(strip_tags(trim($var, "? "), $allowable_tags));
+		return addslashes(strip_tags($var, $allowable_tags));
 	}
 	elseif ($santype == 4) {
 		return stripslashes(preg_replace('/<([^>]+)>/es', "'<'.sanitize('\\1',5).'>'",strip_tags($var, $allowable_tags)));

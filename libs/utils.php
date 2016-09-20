@@ -275,6 +275,7 @@ function checklevel($levl){
 function makeUrlFriendly($output, $isPage=false) {
 	global $db;
 
+    $output = trim($output, " ?");
 	if(function_exists('utils_makeUrlFriendly')) {
 		$output = utils_makeUrlFriendly($output);
 	}
