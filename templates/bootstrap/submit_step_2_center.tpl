@@ -121,14 +121,8 @@
 		</div>
 		{* START STORY PREVIEW *}
 		<div class="col-md-6 submit_step_2_right" id="dockcontent">
-            <div style="width: 365px; padding: 15px 15px 10px 15px;background-color: #FFF8DC;border: 1px solid #E0DCBF;font-size: 14px;">
-            <h3 style="margin-bottom: 18px;">Comment poser une question ?</h1>
-
-<strong>Est-ce bien une question à propos de l'autonomie, la transition ou la permaculture ?</strong><br />
-<br />
-Est-il possible de répondre à la question et pas seulement d'en débattre ?<br />
-<br />
-Soyez précis. Donnez des détails. Partagez vos recherches.<br />
+            <div style="width: 365px; padding: 15px 15px 10px 15px;background-color: #E4EFF5;border: 1px solid #D0DCFF;font-size: 14px;">
+            {#PLIGG_Visual_Submit2_HowToAsk#}
             </div>
         
 			{checkActionsTpl location="tpl_pligg_submit_preview_start"}			
